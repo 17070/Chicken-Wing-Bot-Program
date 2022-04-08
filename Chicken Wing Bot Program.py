@@ -5,8 +5,8 @@ from random import randint
 
 #Lists
 bot_names = ["Turkey Joe jr", "Chunky", "Philip",
-              "Bertha", "Agatha", "Jean Phillipe",
-              "Felix", "Gertha", "Susan", "Ann"]
+             "Bertha", "Agatha", "Jean Phillipe",
+             "Felix", "Gertha", "Susan", "Ann"]
 
 
 #Welcome
