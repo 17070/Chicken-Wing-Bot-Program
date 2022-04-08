@@ -1,10 +1,13 @@
+#Customer Details Dictionary
+customer_details = {}
+
 #Click/Collect Menu
 
 valid = False
 while not valid:
-    name = input("Please enter your Name ")     
-    if name != "":
-        print(name)
+    customer_details['name'] = input("Please enter your Name ")     
+    if customer_details['name'] != "":
+        print(customer_details['name'])
         break  
     else:
         print("This cannot be blank")
@@ -12,11 +15,12 @@ while not valid:
 
 valid = False
 while not valid:
-    phone = int(input("Please enter your Phone Number "))
-    if phone != "":
-        print(phone)
+    customer_details['phone'] = input("Please enter your Phone Number ")
+    if customer_details['phone'] != "":
+        print(customer_details['phone'])
         break   
     else:
         print("This cannot be blank")
 
+print(customer_details)
 print("A text message will be sent to your phone when your order is ready to be collected")
