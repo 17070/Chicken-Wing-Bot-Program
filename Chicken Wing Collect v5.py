@@ -15,7 +15,7 @@ def not_blank(question):
 
 #Click/Collect Menu
 
-def collect():  
+def collect_menu():  
   question = ("Please enter your name ")
   customer_details['name'] = not_blank(question )
   print (customer_details['name'])
@@ -32,6 +32,7 @@ while not valid:
             print("This cannot be blank")
     except ValueError:
         print("Please enter numbers only")
-
+        
+collect_menu()
 print(customer_details)
 print("A text message will be sent to your phone when your order is ready to be collected")
