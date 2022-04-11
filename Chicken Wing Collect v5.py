@@ -1,18 +1,26 @@
 #Customer Details Dictionary
 customer_details = {}
 
+#Blank Input         
+def not_blank(question):
+    valid = False
+    while not valid:
+        response = input(question)
+        if response !="":
+            return response.title()
+        else:
+            print("This cannot be blank")   
+
+
+
 #Click/Collect Menu
 
-valid = False
-while not valid:
-    customer_details['name'] = input("Please enter your Name ")     
-    if customer_details['name'] != "":
-        print(customer_details['name'])
-        break  
-    else:
-        print("This cannot be blank")
-        
-        
+def collect():  
+  question = ("Please enter your name ")
+  customer_details['name'] = not_blank(question )
+  print (customer_details['name'])
+
+       
 valid = False
 while not valid:
     try:
