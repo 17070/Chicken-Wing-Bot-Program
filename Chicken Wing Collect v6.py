@@ -1,8 +1,11 @@
 #Customer Details Dictionary
 customer_details = {}
 
-#Blank Input Function      
+#Constants
+ph_low = 7
+ph_high = 10
 
+#Blank Input Function      
 def not_blank(question):
     valid = False
     while not valid:
@@ -12,14 +15,25 @@ def not_blank(question):
         else:
             print("This cannot be blank")   
 
+#Letter Only Function
+def letter_only(question):
+    while True:
+        response = input(question)
+        x = response.isalpha()
+        if x == False:
+            print("Input must only contain letters ")
+        else:
+            return (response.title())
+            
+
 #Click/Collect Menu
 
 def collect_menu():  
-
     question = ("Please enter your name ")
-    customer_details['name'] = not_blank(question )
+    customer_details['name'] = letter_only(question )
     print (customer_details['name'])
 
+        
     valid = False
     while not valid:
         try:
@@ -31,7 +45,7 @@ def collect_menu():
                 print("This cannot be blank")
         except ValueError:
             print("Please enter numbers only")
-        
+            
 collect_menu()
 print(customer_details)
 print("A text message will be sent to your phone when your order is ready to be collected")
