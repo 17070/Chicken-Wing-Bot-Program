@@ -45,7 +45,7 @@ def col_del():
                     break
 
             else:
-                print("Number must be 1 or 2")
+                print("Number must be 1 or 2") 
 
         except ValueError:
             print ("That is not a valid number ")

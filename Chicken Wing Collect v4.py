@@ -1,7 +1,7 @@
 #Customer Details Dictionary
 customer_details = {}
 
-#Blank Input Function
+#Click/Collect Menu
 valid = False
 while not valid:
     customer_details['name'] = input("Please enter your Name ")     
@@ -11,7 +11,7 @@ while not valid:
     else:
         print("This cannot be blank")
 
-#Click/Collect Menu   
+ 
 valid = False
 while not valid:
     try:
