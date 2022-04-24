@@ -55,7 +55,33 @@ def collect_menu():
     question = ("Please enter your phone number ")
     customer_details['phone'] = number_only(question, ph_low, ph_high)
     print (customer_details['phone'])
-            
+    print(customer_details)
+
+def confirm_order(): 
+    while True:
+        try:
+            print("")
+            print("Is this order correct?") 
+            print("Enter 1 for yes")
+            print("Enter 2 for no")
+            confirm_order = int(input("Please enter a number: "))
+
+            if confirm_order >= 1 and confirm_order <= 2:
+                if confirm_order == 1:
+                    print("Order confirmed")
+                    print("A text message will be sent to your phone when your order is ready to be collected")
+                    break
+
+                elif confirm_order == 2:
+                    print("")
+                    collect_menu()
+
+            else:
+                print("Number must be 1 or 2") 
+
+        except ValueError:
+            print ("That is not a valid number ")
+            print ("Please enter 1 or 2 ")
+
 collect_menu()
-print(customer_details)
-print("A text message will be sent to your phone when your order is ready to be collected")
+confirm_order()
