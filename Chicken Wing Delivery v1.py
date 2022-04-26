@@ -15,7 +15,7 @@ while not valid:
 valid = False
 while not valid:
     try:
-        customer_details['phone'] = int(input("Please enter your Phone Number "))
+        customer_details['phone'] = input("Please enter your Phone Number ")
         if customer_details['phone'] != "":
             print(customer_details['phone'])
             break   
@@ -27,7 +27,7 @@ while not valid:
 valid = False
 while not valid:
     try:
-        customer_details['house number'] = int(input("Please enter your House Number "))
+        customer_details['house number'] = input("Please enter your House Number ")
         if customer_details['house number'] != "":
             print(customer_details['house number'])
             break   
