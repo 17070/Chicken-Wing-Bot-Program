@@ -78,6 +78,7 @@ def delivery_menu():
     customer_details['suburb'] = letter_only(question)     
     print (customer_details['suburb'])
     print(customer_details)
+    confirm_order()
 
 def confirm_order(): 
     while True:
