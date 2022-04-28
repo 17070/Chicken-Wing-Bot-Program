@@ -42,6 +42,7 @@ order_list = []
 order_cost = []
 
 #Chicken Wing Order
+print("")
 num_items = 0
 while True:
     try:

@@ -30,7 +30,7 @@ def menu():
     print("{: <13} {: <40} {: <6} {: >15} ".format("Number", "Item", "Cost", "Description"))
     print("------------------------------------------------------------------------------------------------------------------------------------")
     while count in range(len(menu_items)):
-        table.append([count+1,menu_items[count], menu_cost[count], menu_description[count]])
+        table.append([count+1 ,menu_items[count], menu_cost[count], menu_description[count]])
         count = count + 1
     for row in table:
         print("{: <12} {: <40} ${: <10.2f} {: <100} ".format(*row))
@@ -56,6 +56,7 @@ while True:
         print("That is not a valid number")
         print("Please enter a number between 1 and 10 ")
 
+#Choose Item
 for item in range (num_items):
     while num_items > 0:
         while True:
@@ -68,10 +69,11 @@ for item in range (num_items):
             except ValueError:
                 print("That is not a valid number")
                 print("Your order must be between 1 and 13 ")
+        items_ordered = items_ordered - 1
         order_list.append(menu_items[items_ordered])
         order_cost.append(menu_cost[items_ordered])
         print("{} ${:.2f}" .format (menu_items[items_ordered], menu_cost[items_ordered]))
         num_items = num_items - 1
-
-print(order_list)
-print(order_cost)
+print("")
+for order_list, order_cost in zip(order_list, order_cost):
+    print("{} ${:.2f}" .format (order_list,order_cost))
