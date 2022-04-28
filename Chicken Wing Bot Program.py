@@ -321,7 +321,6 @@ def order():
 
 
 
-#Chicken Wing Order
 #Print Receipt
 #Cancel Order
 #New Order
