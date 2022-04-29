@@ -1,5 +1,6 @@
 #Chicken Wing Bot Program
- 
+
+import sys
 import random
 from random import randint
 
@@ -39,7 +40,6 @@ customer_details = {}
 
 
 order_list = []
-
 order_cost = []
 
 #Constants
@@ -145,7 +145,7 @@ def confirm_order_del():
 
             if confirm_order >= 1 and confirm_order <= 2:
                 if confirm_order == 1:
-                    print("Order confirmed")
+                    print("Confirmed Input")
                     break
 
                 elif confirm_order == 2:
@@ -171,7 +171,7 @@ def confirm_order_menu():
 
             if confirm_order >= 1 and confirm_order <= 2:
                 if confirm_order == 1:
-                    print("Order confirmed")
+                    print("Confirmed Input")
                     break
 
                 elif confirm_order == 2:
@@ -185,6 +185,76 @@ def confirm_order_menu():
             print ("That is not a valid number ")
             print ("Please enter 1 or 2 ")
 
+#Delivery Charge Function
+def delivery_charge():
+
+    if order_type == "delivery" and num_items < 5:
+        order_list.append("Delivery Charge")
+        order_cost.append (9)
+        print("Because you ordered under 5 menu items there is a delivery charge of $9.00 ")
+
+    elif order_type == "delivery": 
+        order_list.append("Delivery Charge")
+        order_cost.append (0)
+
+
+#Confirm Order Function for End of Program
+def confirm_order_final(): 
+    while True:
+        try:
+            print("")
+            print("Is this order correct?") 
+            print("Enter 1 for yes")
+            print("Enter 2 for no")
+            confirm_order = int(input("Please enter a number: "))
+
+            if confirm_order >= 1 and confirm_order <= 2:
+                if confirm_order == 1:
+                    print("Order Confirmed")
+                    print("Your order has been sent to the kitchen")
+                    new_or_exit()
+
+                elif confirm_order == 2:
+                    print("Your order has been canceled")
+                    new_or_exit()
+                   
+
+            else:
+                print("Number must be 1 or 2") 
+
+        except ValueError:
+            print ("That is not a valid number ")
+            print ("Please enter 1 or 2 ")
+
+
+def new_or_exit():
+    print("You can place a new order or exit the program")
+    print("To start a new order press 1 ")
+    print("To exit the program press 2 ")
+    while True:
+        try:
+            confirm = int(input("Please enter a number: "))
+            if confirm >= 1 and confirm <= 2:
+                if confirm == 1:
+                    print("New Order")
+                    order_list.clear()
+                    order_cost.clear()
+                    customer_details.clear()
+                    main()
+
+                elif confirm == 2:
+                    print("Exit Program")
+                    order_list.clear()
+                    order_cost.clear()
+                    customer_details.clear()
+                    sys.exit()
+                    
+                else:
+                    print("Number must be 1 or 2") 
+
+        except ValueError:
+            print ("That is not a valid number ")
+            print ("Please enter 1 or 2 ")
 
 #Welcome
 def welcome ():
@@ -200,6 +270,7 @@ def welcome ():
 
 #Collect or Delivery Menu
 def col_del():
+    global order_type
     order_type = ""
     print("Do you want your chicken wings delievered or to collect from store?") 
     print("")
@@ -283,13 +354,16 @@ def menu():
     for row in table:
         print("{: <12} {: <40} ${: <10.2f} {: <100} ".format(*row))
 
+
 #Chicken Wing Order
 def order():
     
+    global num_items
     num_items = 0
     while True:
         try:
             num_items = int(input("How many items would you like to order? "))
+
             if num_items >= 1 and num_items <= 10:
                     print (num_items) 
                     break
@@ -319,16 +393,11 @@ def order():
             print("{} ${:.2f}" .format (menu_items[items_ordered], menu_cost[items_ordered]))
             num_items = num_items - 1
 
-    print("")
-    print("Menu items ordered: ")
-    for order_list, order_cost in zip(order_list, order_cost):
-        print("{} ${:.2f}" .format (order_list,order_cost))
-    confirm_order_menu()
+        
 
 #Print Order Receipt
+
 def receipt(order_type):
-  
-    total_cost = sum(order_cost)
 
     if order_type == "collect":
         print("Your order is for Click and Collect ")
@@ -337,20 +406,21 @@ def receipt(order_type):
         print(f"Customer Name: {customer_details['name']} \nCustomer Phone: {customer_details['phone']}")
         print("")
 
-    elif order_type == "delivery":
+    elif order_type == "delivery" and num_items < 5:
         print("Your order is for Delivery ")
         print("")
         print("Customer Details:")
-        print(f"Customer Name: {customer_details['name']} \n Customer Phone: {customer_details['phone']} \n Customer Adress: {customer_details['house number']} {customer_details['street']}, {customer_details['suburb']}")
+        print(f"\n Customer Name: {customer_details['name']} \n Customer Phone: {customer_details['phone']} \n Customer Adress: {customer_details['house number']} {customer_details['street']}, {customer_details['suburb']}")
         print("")
 
- 
     
     count = 0
     for item in order_list:
         print("\n Ordered: {} \n Cost: ${:.2f}".format (item, order_cost[count]))
         count = count + 1
 
+    delivery_charge()
+    total_cost = sum(order_cost)
     print("")
     print("Total order cost: ")
     print(f"${total_cost:.2f}")
@@ -367,5 +437,6 @@ def main ():
     menu()
     order()
     receipt(order_type)
+    confirm_order_final()
 
 main()

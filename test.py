@@ -165,7 +165,7 @@ for item in range (num_items):
 print("")
 for order_list, order_cost in zip(order_list, order_cost):
     print("{} ${:.2f}" .format (order_list,order_cost))
-'''
+
 
 #Lists
 bot_names = ["Turkey Joe jr", "Chunky", "Philip",
@@ -287,3 +287,14 @@ def receipt(order_type):
     print(f"${total_cost:.2f}")
 
 
+def delivery_charge():
+
+    if order_type == "delivery" and num_items < 5:
+        order_list.append("Delivery Charge")
+        order_cost.append (9)
+
+    elif order_type == "delivery": 
+        total_cost = total_cost + 9 
+        order_list.append("Delivery Charge")
+        order_cost.append (0)
+'''
