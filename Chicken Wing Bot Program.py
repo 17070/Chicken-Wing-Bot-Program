@@ -3,8 +3,6 @@
 import random
 from random import randint
 
-#Customer Details Dictionary
-customer_details = {}
 
 
 #Lists
@@ -35,6 +33,14 @@ menu_description = ['A single chicken wing',
                     'Kids meal with a chicken wing burger, small serving of fries, and Juice',
                     'Crinkle-Cut fries seasoned with chicken salt',
                     'Fried Chicken Nuggets']
+
+#Customer Details Dictionary
+customer_details = {}
+
+
+order_list = []
+
+order_cost = []
 
 #Constants
 ph_low = 7
@@ -194,6 +200,7 @@ def welcome ():
 
 #Collect or Delivery Menu
 def col_del():
+    order_type = ""
     print("Do you want your chicken wings delievered or to collect from store?") 
     print("")
     print("Enter 1 to pick up from store")
@@ -206,11 +213,13 @@ def col_del():
 
             if collect_deliver >= 1 and collect_deliver <= 2:
                 if collect_deliver == 1:
+                    order_type = "collect"
                     print("Collect") #Prints Collect when 1 is inputted
                     collect_menu()
                     break
 
                 elif collect_deliver == 2:
+                    order_type = "delivery"
                     print("Delivery") #Prints Delivery when 2 is inputted
                     delivery_menu()
                     break
@@ -220,7 +229,7 @@ def col_del():
         except ValueError:
             print ("That is not a valid number ")
             print ("Please enter 1 or 2 ")
-
+    return order_type
 
 #Click/Collect Menu
 def collect_menu():  
@@ -277,9 +286,6 @@ def menu():
 #Chicken Wing Order
 def order():
     
-    order_list = []
-    order_cost = []
-
     num_items = 0
     while True:
         try:
@@ -308,8 +314,8 @@ def order():
                     print("That is not a valid number")
                     print("Your order must be between 1 and 13 ")
             items_ordered = items_ordered - 1
-            order_list.append(menu_items[items_ordered])
-            order_cost.append(menu_cost[items_ordered])
+            order_list.append (menu_items[items_ordered])
+            order_cost.append (menu_cost[items_ordered])
             print("{} ${:.2f}" .format (menu_items[items_ordered], menu_cost[items_ordered]))
             num_items = num_items - 1
 
@@ -319,9 +325,36 @@ def order():
         print("{} ${:.2f}" .format (order_list,order_cost))
     confirm_order_menu()
 
+#Print Order Receipt
+def receipt(order_type):
+  
+    total_cost = sum(order_cost)
 
+    if order_type == "collect":
+        print("Your order is for Click and Collect ")
+        print("")
+        print("Customer Details:")
+        print(f"Customer Name: {customer_details['name']} \nCustomer Phone: {customer_details['phone']}")
+        print("")
 
-#Print Receipt
+    elif order_type == "delivery":
+        print("Your order is for Delivery ")
+        print("")
+        print("Customer Details:")
+        print(f"Customer Name: {customer_details['name']} \n Customer Phone: {customer_details['phone']} \n Customer Adress: {customer_details['house number']} {customer_details['street']}, {customer_details['suburb']}")
+        print("")
+
+ 
+    
+    count = 0
+    for item in order_list:
+        print("\n Ordered: {} \n Cost: ${:.2f}".format (item, order_cost[count]))
+        count = count + 1
+
+    print("")
+    print("Total order cost: ")
+    print(f"${total_cost:.2f}")
+
 #Cancel Order
 #New Order
 #Quit Order
@@ -330,8 +363,9 @@ def order():
 def main ():
 
     welcome()
-    col_del()
+    order_type = col_del()
     menu()
     order()
-    
+    receipt(order_type)
+
 main()
