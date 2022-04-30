@@ -94,14 +94,16 @@ def number_only(question, ph_low, ph_high):
         except ValueError:
             print("That is not a valid number")
             print(f"Please print a number between {ph_low} and {ph_high}") #Prints error message when ValueError
+
 #House Number Validator Function
 def house_number_only(question, house_num_low, house_num_high):
     while True:  #Sets up while loop
         try:
             num = int(input(question))  #Asks for input and sets input to integer
+            test_num = num
             count = 0  #Sets count to 0
-            while num > 0:  #Sets up while loop
-                num = num//10
+            while test_num > 0:  #Sets up while loop
+                test_num = test_num//10
                 count = count + 1  #Adds 1 to count
             if count >= house_num_low and count <= house_num_high:  #Checks to see if count is between house_num_low and house_num_high
                 return str(num)  #Returns string back to num when True
@@ -177,6 +179,7 @@ def confirm_order_menu():
             if confirm_order >= 1 and confirm_order <= 2:  #Checks to see if confirm_order is between 1 and 2
                 if confirm_order == 1:
                     print("Confirmed Input")
+                    print("")
                     break  #Exits out of loop
 
                 elif confirm_order == 2:
@@ -217,10 +220,12 @@ def confirm_order_final():
                 if confirm_order == 1:
                     print("Order Confirmed")
                     print("Your order has been sent to the kitchen")
+                    print("")
                     new_or_exit() #Runs new_or_exit function
 
                 elif confirm_order == 2:
                     print("Your order has been canceled")
+                    print("")
                     new_or_exit() #Runs new_or_exit function
                    
             else:
