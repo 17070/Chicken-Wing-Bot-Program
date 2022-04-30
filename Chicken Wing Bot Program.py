@@ -77,22 +77,23 @@ def letter_only(question):
             
 
 #Phone Number Validator Function
+
 def number_only(question, ph_low, ph_high):
-    while True: #Sets up while loop
+    while True:  #Sets up while loop
         try:
             num = int(input(question))  #Asks for input and sets input to integer
+            test_num = num
             count = 0  #Sets count to 0
-            while num > 0:  #Sets up while loop
-                num = num//10
-                count = count + 1 #Adds 1 to count 
+            while test_num > 0:  #Sets up while loop
+                test_num = test_num//10
+                count = count + 1  #Adds 1 to count
             if count >= ph_low and count <= ph_high:  #Checks to see if count is between ph_low and ph_high
-                return str(num) #Returns string back to num when True
+                return str(num)  #Returns string back to num when True
             else:
-                print(f"Please print a number between {ph_low} and {ph_high} digits") #Prints error message when False
+                print(f"Please print a number between {ph_low} and {ph_high}") #Prints error message when False
         except ValueError:
             print("That is not a valid number")
-            print(f"Please print a number between {ph_low} and {ph_high} digits") #Prints error message when ValueError
-
+            print(f"Please print a number between {ph_low} and {ph_high}") #Prints error message when ValueError
 #House Number Validator Function
 def house_number_only(question, house_num_low, house_num_high):
     while True:  #Sets up while loop
